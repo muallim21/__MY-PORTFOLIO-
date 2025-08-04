@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kano Tigers Football Club Portal</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a1a1a, #333);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .container {
+      background: #222;
+      padding: 40px 30px;
+      border-radius: 10px;
+      width: 320px;
+      box-shadow: 0 0 15px rgba(255, 165, 0, 0.5);
+    }
+
+    h2 {
+      text-align: center;
+      color: #FFA500;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      background: #444;
+      color: white;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #FFA500;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e69500;
+    }
+
+    .toggle-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 0.9em;
+      cursor: pointer;
+      color: #ccc;
+    }
+
+    .toggle-link:hover {
+      text-decoration: underline;
+      color: #FFA500;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.9em;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Kano Tigers Football Club</h2>
+
+    <!-- Login Form -->
+    <div id="login-form">
+      <input type="text" id="login-username" placeholder="Username">
+      <input type="password" id="login-password" placeholder="Password">
+      <button onclick="login()">Log In</button>
+      <div class="toggle-link" onclick="showSignup()">New user? Register here</div>
+      <div class="message" id="login-message"></div>
+    </div>
+
+    <!-- Signup Form -->
+    <div id="signup-form" class="hidden">
+      <input type="text" id="signup-username" placeholder="Choose a username">
+      <input type="email" id="signup-email" placeholder="Email address">
+      <input type="password" id="signup-password" placeholder="Choose a password">
+      <button onclick="signup()">Sign Up</button>
+      <div class="toggle-link" onclick="showLogin()">Already have an account? Log in</div>
+      <div class="message" id="signup-message"></div>
+    </div>
+  </div>
+
+  <script>
+    function showSignup() {
+      document.getElementById("login-form").classList.add("hidden");
+      document.getElementById("signup-form").classList.remove("hidden");
+    }
+
+    function showLogin() {
+      document.getElementById("signup-form").classList.add("hidden");
+      document.getElementById("login-form").classList.remove("hidden");
+    }
+
+    function login() {
+      const username = document.getElementById("login-username").value.trim();
+      const password = document.getElementById("login-password").value.trim();
+      const msg = document.getElementById("login-message");
+
+      if (!username || !password) {
+        msg.textContent = "Please enter both username and password.";
+        msg.style.color = "orange";
+      } else {
+        msg.textContent = "Logging in... (demo)";
+        msg.style.color = "lightgreen";
+        setTimeout(() => {
+          msg.textContent = "Welcome back, " + username + "!";
+        }, 1000);
+      }
+    }
+
+    function signup() {
+      const username = document.getElementById("signup-username").value.trim();
+      const email = document.getElementById("signup-email").value.trim();
+      const password = document.getElementById("signup-password").value.trim();
+      const msg = document.getElementById("signup-message");
+
+      if (!username || !email || !password) {
+        msg.textContent = "All fields are required.";
+        msg.style.color = "orange";
+      } else if (!email.includes("@")) {
+        msg.textContent = "Please enter a valid email.";
+        msg.style.color = "red";
+      } else {
+        msg.textContent = "Registering user... (demo)";
+        msg.style.color = "lightgreen";
+        setTimeout(() => {
+          msg.textContent = "Account created! You can now log in.";
+        }, 1000);
+      }
+    }
+  </script>
+
+</body>
+</html>
+
